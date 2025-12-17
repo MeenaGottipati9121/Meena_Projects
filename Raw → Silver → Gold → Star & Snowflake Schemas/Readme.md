@@ -248,6 +248,10 @@ ORDER BY id, start\_date;
 
 STAR SCHEMA:\
 \-------------------\
+-- STAR Schema
+
+So, basically, in the STAR schema, I design a denormalized model with a central fact table and surrounding dimension tables derived from the GOLD layer. This structure simplifies joins, improves query performance, and is optimized for reporting and BI workloads. The STAR schema is refreshed in a controlled and re-runnable manner to maintain consistency.
+
 Star Schema Creation with the name demo\_star
 This query creates a new schema named demo_star within the current database if it doesn’t already exist.
 
@@ -385,7 +389,11 @@ ORDER BY f.fact\_sk;
 
 ![Full_StarSchema_Join.](Images/Full_StarSchema_Join.png)
 
-SNOWFLAKE SCHEMA:
+--SNOWFLAKE SCHEMA:
+
+-- Snowflake Schema
+
+So, basically, the Snowflake schema further normalizes the STAR schema by splitting dimensions into sub-dimensions such as name, email, and status. This reduces data redundancy and improves dimension maintainability while still supporting analytical queries. It demonstrates advanced dimensional modeling aligned with enterprise data warehouse standards.
 This query creates a new schema named demo_snowflake within the current database if it doesn’t already exist.
 
 The demo_snowflake schema is typically used to store fact and dimension tables in a snowflake schema, which is a normalized form of the star schema for analytics and reporting.
@@ -576,9 +584,33 @@ Retrieves a full view of user activity by joining the fact table with multiple d
 
 ![UserActivity_FactDimension_Join.](Images/UserActivity_FactDimension_Join.png)
 
+-- Time Travel (Statement ID & Timestamp)
+
+So, basically, this section demonstrates how Snowflake Time Travel is used to recover data that was accidentally deleted or modified. I use both statement-ID-based and timestamp-based queries to view data as it existed at a specific point in time. This helps in rolling back changes and auditing data without relying on backups or physical data copies. Overall, it shows Snowflake’s built-in data protection within the configured retention period.
+
+![Time_Travel.](Images/Time_Travel.png)
+
+-- Fail-safe
+
+So, basically, Fail-safe is Snowflake’s last-resort data recovery layer that comes into play after the Time Travel retention period ends. It is mainly used for disaster recovery and can only be accessed through Snowflake Support.
+
 -- Zero-Copy Cloning
 
 So, basically, Zero-Copy Cloning creates an instant snapshot of a table without physically copying data. Any changes made to the source table after cloning do not impact the clone, making it ideal for testing, validation, and recovery scenarios.
 
-![Zero-copy cloning.](Images/Zero-copy cloning.png)
+![Zero-copy_cloning.](Images/Zero-copy_cloning.png)
+
+-- Query Profile & Performance
+
+So, basically, Query Profile helps analyze how much data is scanned and how efficiently Snowflake executes a query. When result caching is enabled, repeated queries return instantly with zero data scanned, significantly improving performance. When caching is disabled, Snowflake reads data again from storage, increasing both data scanned and execution time. Overall, Query Profile helps understand performance, data pruning, and cost impact.
+
+![Query_profile.](Images/Query_profile.png)
+
+![Query_profile_Monitoring.](Images/Query_profile_Monitoring.png)
+
+-- Views & Materialized Views
+
+So, basically, a view provides a logical layer on top of the GOLD table and always reads the latest data from the base table. It does not store data physically and is mainly used to simplify queries and control access. A materialized view, on the other hand, physically stores query results to improve performance for frequent or heavy queries. Overall, views are used for flexibility and materialized views for performance optimization.
+
+![Materialized_views.](Images/Materialized_views.png)
 
