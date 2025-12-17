@@ -575,3 +575,10 @@ ORDER BY f.fact\_sk;
 Retrieves a full view of user activity by joining the fact table with multiple dimension tables, showing user details, status, and historical info in a star-schema format.
 
 ![UserActivity_FactDimension_Join.](Images/UserActivity_FactDimension_Join.png)
+
+-- Zero-Copy Cloning
+
+So, basically, Zero-Copy Cloning creates an instant snapshot of a table without physically copying data. Any changes made to the source table after cloning do not impact the clone, making it ideal for testing, validation, and recovery scenarios.
+
+![Zero-copy cloning.](Images/Zero-copy cloning.png)
+
