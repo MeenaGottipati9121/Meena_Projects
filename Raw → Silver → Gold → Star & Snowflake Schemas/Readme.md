@@ -1,3 +1,6 @@
+End-to-End Snowflake Data Pipeline RAW–SILVER–GOLD | SCD-2 | Time Travel | Fail-safe | Views | Materialized Views | Query Profile | Zero-Copy Cloning
+
+
 1\.Database Creation:\
 1\.a Creating Database demo\_project\
 This query creates a new database named demo_project if it doesn’t already exist. It ensures that the database is available for storing tables and data without throwing an error if it already exists.
