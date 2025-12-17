@@ -1,7 +1,11 @@
 star schema:
 
+--STAR SCHEMA IMPLEMENTATION FROM GOLD LAYER--
+
+--STEP 1: CREATE STAR SCHEMA--
 CREATE SCHEMA IF NOT EXISTS demo_star;
 
+--STEP 2: CREATE DIMENSION TABLE--
 CREATE OR REPLACE TABLE demo_star.dim_user (
     user_sk INT AUTOINCREMENT,
     id INT,
@@ -15,6 +19,7 @@ CREATE OR REPLACE TABLE demo_star.dim_user (
     PRIMARY KEY (user_sk)
 );
 
+--STEP 3: FIRST RUN – LOAD DIMENSION--
 INSERT INTO demo_star.dim_user
 (
     id,
@@ -37,6 +42,7 @@ SELECT
     is_deleted
 FROM demo_gold.users_gold;
 
+--STEP 4: CREATE FACT TABLE--
 CREATE OR REPLACE TABLE demo_star.fact_user_activity (
     fact_sk INT AUTOINCREMENT,
     user_sk INT,
@@ -44,6 +50,7 @@ CREATE OR REPLACE TABLE demo_star.fact_user_activity (
     status STRING
 );
 
+-- STEP 5: FIRST RUN – LOAD FACT TABLE--
 INSERT INTO demo_star.fact_user_activity (
     user_sk,
     event_ts,
