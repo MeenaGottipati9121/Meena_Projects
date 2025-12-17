@@ -1,1 +1,5 @@
+Snowflake End-to-End Data Warehouse Architecture
 
+This project demonstrates an end-to-end data warehousing solution built on Snowflake, following modern medallion architecture principles. It showcases the ingestion of semi-structured JSON data into a Raw layer, transformation and deduplication in a Silver layer, and historized, business-ready data in a Gold layer using Slowly Changing Dimension (SCD Type 2) techniques.
+
+The solution further models the curated data into both Star and Snowflake schemas, enabling efficient analytical queries and BI reporting. The project highlights best practices in data modeling, change data tracking, and SQL-based transformations commonly used in real-world enterprise data platforms.
